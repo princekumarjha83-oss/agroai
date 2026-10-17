@@ -24,7 +24,8 @@ import {
   initialChatMessages
 } from './mockData';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const rawApiUrl = (import.meta as any).env?.VITE_API_BASE_URL || (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl.replace(/\/+$/, '')}/api`;
 
 const STORAGE_KEYS = {
   TOKEN: 'agrivision_token',
