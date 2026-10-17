@@ -147,7 +147,19 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ currentLang, onLangu
                 className="form-select"
               >
                 <option value="en">English (India)</option>
-                <option value="hi">हिन्दी (Devanagari)</option>
+                <option value="hi">हिन्दी (Hindi - Devanagari)</option>
+                <option value="bn">বাংলা (Bengali - বাংলা)</option>
+                <option value="kn">ಕನ್ನಡ (Kannada - ಕನ್ನಡ)</option>
+                <option value="ta">தமிழ் (Tamil - தமிழ்)</option>
+                <option value="te">తెలుగు (Telugu - తెలుగు)</option>
+                <option value="mr">मराठी (Marathi - Devanagari)</option>
+                <option value="gu">ગુજરાતી (Gujarati - ગુજરાતી)</option>
+                <option value="pa">ਪੰਜਾਬੀ (Punjabi - Gurmukhi)</option>
+                <option value="ml">മലയാളം (Malayalam - മലയാളം)</option>
+                <option value="or">ଓଡ଼ିଆ (Odia - ଓଡ଼ିଆ)</option>
+                <option value="as">অসমীয়া (Assamese - বাংলা)</option>
+                <option value="ur">اردو (Urdu - Perso-Arabic)</option>
+                <option value="ne">नेपाली (Nepali - Devanagari)</option>
               </select>
             </div>
           </div>

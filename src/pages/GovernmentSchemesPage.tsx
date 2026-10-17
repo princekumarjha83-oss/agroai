@@ -21,6 +21,7 @@ interface GovernmentSchemesPageProps {
 export const GovernmentSchemesPage: React.FC<GovernmentSchemesPageProps> = ({ currentLang }) => {
   const [schemes, setSchemes] = useState<GovernmentScheme[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [activeSchemeModal, setActiveSchemeModal] = useState<GovernmentScheme | null>(null);
 
   // Eligibility Wizard State
@@ -32,7 +33,7 @@ export const GovernmentSchemesPage: React.FC<GovernmentSchemesPageProps> = ({ cu
     apiService.getSchemes(selectedCategory).then(setSchemes);
   }, [selectedCategory]);
 
-  const categories = ['All', 'Direct Income Support', 'Crop Insurance', 'Soil & Irrigation', 'Farm Machinery'];
+  const categories = ['All', 'Direct Income Support', 'Crop Insurance', 'Soil & Irrigation', 'Farm Machinery', 'Organic Farming'];
 
   return (
     <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -93,26 +94,48 @@ export const GovernmentSchemesPage: React.FC<GovernmentSchemesPageProps> = ({ cu
         </div>
       </div>
 
-      {/* Category Filter Chips */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
-        {categories.map((c) => (
-          <button
-            key={c}
-            onClick={() => setSelectedCategory(c)}
+      {/* Category Filter Chips & Search Bar */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '14px', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {categories.map((c) => (
+            <button
+              key={c}
+              onClick={() => setSelectedCategory(c)}
+              style={{
+                padding: '8px 18px',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.88rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                background: selectedCategory === c ? 'var(--forest-green)' : 'var(--cream-surface)',
+                color: selectedCategory === c ? 'var(--white)' : 'var(--dark-text-secondary)',
+                border: '1px solid var(--cream-border)',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ position: 'relative', minWidth: '240px', flex: '1', maxWidth: '320px' }}>
+          <Search style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: 'var(--muted-text)' }} />
+          <input
+            type="text"
+            placeholder={currentLang === 'hi' ? 'योजना खोजें (जैसे: सोलर, ड्रोन, KCC)...' : 'Search schemes (e.g. Solar, KCC, Drone)...'}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             style={{
-              padding: '8px 18px',
+              width: '100%',
+              padding: '9px 12px 9px 36px',
               borderRadius: 'var(--radius-full)',
-              fontSize: '0.88rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              background: selectedCategory === c ? 'var(--forest-green)' : 'var(--cream-surface)',
-              color: selectedCategory === c ? 'var(--white)' : 'var(--dark-text-secondary)',
-              border: '1px solid var(--cream-border)'
+              border: '1.5px solid var(--cream-border)',
+              fontSize: '0.86rem',
+              background: 'var(--white)',
+              outline: 'none'
             }}
-          >
-            {c}
-          </button>
-        ))}
+          />
+        </div>
       </div>
 
       {/* Schemes Grid */}
@@ -123,7 +146,19 @@ export const GovernmentSchemesPage: React.FC<GovernmentSchemesPageProps> = ({ cu
           gap: '24px'
         }}
       >
-        {schemes.map((scheme) => (
+        {schemes
+          .filter((s) => {
+            if (!searchQuery.trim()) return true;
+            const q = searchQuery.toLowerCase();
+            return (
+              s.title.toLowerCase().includes(q) ||
+              s.schemeCode.toLowerCase().includes(q) ||
+              (s.titleHindi && s.titleHindi.toLowerCase().includes(q)) ||
+              s.shortDescription.toLowerCase().includes(q) ||
+              s.financialBenefit.toLowerCase().includes(q)
+            );
+          })
+          .map((scheme) => (
           <div key={scheme.id} className="agri-card agri-card-hover" style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>

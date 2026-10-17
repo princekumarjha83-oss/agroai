@@ -14,6 +14,7 @@ import {
   LayoutDashboard 
 } from 'lucide-react';
 import { Language } from '../../types';
+import { LanguageSelector } from '../common/LanguageSelector';
 
 interface NavbarProps {
   currentLang: Language;
@@ -146,27 +147,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
         {/* Right CTA Area: Language Switcher & Console Launch */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           
-          {/* Language Toggle Pill */}
-          <button
-            onClick={() => onLanguageChange(currentLang === 'en' ? 'hi' : 'en')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 12px',
-              borderRadius: 'var(--radius-full)',
-              background: 'var(--cream-surface)',
-              border: '1.5px solid var(--cream-border)',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              color: 'var(--forest-green)',
-              cursor: 'pointer'
-            }}
-            title={currentLang === 'en' ? 'हिन्दी में बदलें' : 'Switch to English'}
-          >
-            <Languages style={{ width: '15px', height: '15px', color: 'var(--agri-green)' }} />
-            <span>{currentLang === 'en' ? 'हिन्दी' : 'English'}</span>
-          </button>
+          {/* Language Selector Dropdown */}
+          <LanguageSelector currentLang={currentLang} onLanguageChange={onLanguageChange} />
 
           {/* Direct Launch Console Button */}
           <Link

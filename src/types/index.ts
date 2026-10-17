@@ -1,6 +1,8 @@
 // Domain types for AgriVision AI Platform
 
-export type Language = 'en' | 'hi';
+export type Language = 
+  | 'en' | 'hi' | 'bn' | 'kn' | 'ta' | 'te' 
+  | 'mr' | 'gu' | 'pa' | 'ml' | 'or' | 'as' | 'ur' | 'ne';
 
 export interface FarmerProfile {
   id: string;
@@ -100,10 +102,33 @@ export interface MandiPrice {
   isDevelopmentPreview: boolean;
 }
 
+export interface AlternativeDiagnosis {
+  diseaseName: string;
+  diseaseHindi?: string;
+  confidenceScore: number;
+  scientificPathogen?: string;
+}
+
+export interface ChemicalDetail {
+  productName: string;
+  activeIngredient: string;
+  formulation: string;
+  dosage: string;
+  preHarvestIntervalDays: number;
+  ppeRequired: string;
+  fracCode?: string;
+  precautions?: string;
+}
+
 export interface CropDiseaseDiagnosis {
   id: string;
   cropName: string;
   cropNameHindi: string;
+  plantScientificName?: string;
+  cropCategory?: string;
+  plantPart?: string;
+  isPlantDetected?: boolean;
+  isHealthy?: boolean;
   diseaseName: string;
   diseaseHindi: string;
   scientificPathogen: string;
@@ -112,14 +137,23 @@ export interface CropDiseaseDiagnosis {
   affectedLeafAreaPercent: number;
   symptoms: string[];
   symptomsHindi: string[];
+  visibleSigns?: string[];
+  contributingEnvironmentalFactors?: string[];
+  immediateActions?: string[];
   organicRemedy: string[];
   organicRemedyHindi: string[];
   chemicalRemedy: string[];
   chemicalRemedyHindi: string[];
+  chemicalDetails?: ChemicalDetail[];
   preventiveMeasures: string[];
   recommendedSprayWindow: string;
+  aiExplanation?: string;
+  diagnosticLimitations?: string | null;
+  uncertaintyNote?: string | null;
+  modelVersion?: string;
   imageUri: string;
   scannedAt: string;
+  alternativeDiagnoses?: AlternativeDiagnosis[];
   isDevelopmentPreview?: boolean;
 }
 
@@ -210,5 +244,21 @@ export interface ChatMessage {
     organization: string;
     link?: string;
   }[];
+  webCitations?: {
+    title: string;
+    url: string;
+    snippet: string;
+    sourceName: string;
+    publishedDate?: string;
+  }[];
   suggestedFollowUps?: string[];
+  detectedLanguage?: string;
+  groundingStatus?: string;
+  intentDetected?: string;
+  attachedFile?: {
+    name: string;
+    type: string;
+    size?: number;
+    previewUrl?: string;
+  };
 }

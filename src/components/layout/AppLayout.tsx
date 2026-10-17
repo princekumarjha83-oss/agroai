@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import { Language, FarmPlot, FarmerProfile, NotificationItem } from '../../types';
 import { apiService } from '../../services/apiServices';
+import { LanguageSelector } from '../common/LanguageSelector';
 
 interface AppLayoutProps {
   currentLang: Language;
@@ -479,26 +480,8 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ currentLang, onLanguageCha
               <span>Public Site</span>
             </Link>
 
-            {/* Language Toggle Pill */}
-            <button
-              onClick={() => onLanguageChange(currentLang === 'en' ? 'hi' : 'en')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '6px 12px',
-                borderRadius: 'var(--radius-full)',
-                background: 'var(--cream-surface)',
-                border: '1.5px solid var(--cream-border)',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-                color: 'var(--forest-green)',
-                cursor: 'pointer'
-              }}
-            >
-              <Languages style={{ width: '14px', height: '14px', color: 'var(--agri-green)' }} />
-              <span>{currentLang === 'en' ? 'हिन्दी' : 'English'}</span>
-            </button>
+            {/* Language Selector Dropdown */}
+            <LanguageSelector currentLang={currentLang} onLanguageChange={onLanguageChange} />
 
             {/* Notifications Bell Dropdown */}
             <div style={{ position: 'relative' }}>

@@ -7,15 +7,50 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+
+# Production build
+dist/
+dist-ssr/
 *.local
+
+# Environment & Secrets (Crucial: Never commit live keys or env files)
+.env
+*.env
+.env.*
+!.env.example
+backend/.env
+backend/*.env
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+backend/venv/
+backend/env/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Backend Uploads & Local DB Cache
+**/uploads/*
+!**/uploads/.gitkeep
+backend/backend/
+backend/data/*.sqlite
+backend/data/*.db
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*

@@ -476,6 +476,334 @@ export const sampleSchemes: GovernmentScheme[] = [
     applicationDeadline: 'Window closes 15th November 2026',
     category: 'Farm Machinery',
     isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-6',
+    schemeCode: 'PM-KUSUM',
+    title: 'Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan (Solar Pump)',
+    titleHindi: 'प्रधानमंत्री किसान ऊर्जा सुरक्षा एवं उत्थान महाभियान (पीएम-कुसुम सोलर पंप)',
+    ministry: 'Ministry of New and Renewable Energy (MNRE), Govt of India',
+    shortDescription: 'Capital subsidy of up to 60% (30% Central + 30% State) for installing standalone solar agricultural pumps (3 HP to 7.5 HP) and solarization of existing grid-connected electric pumps.',
+    shortDescriptionHindi: 'खेतों में 3 से 7.5 एचपी तक के स्टैंडअलोन सोलर पंप लगाने और मौजूदा बिजली पंपों के सोलराइजेशन पर 60% तक का सरकारी अनुदान।',
+    targetBeneficiaries: 'Individual farmers, farmer groups, water user associations',
+    financialBenefit: 'Up to ₹1.5 - ₹2.5 Lakhs capital subsidy on solar agricultural pumps',
+    subsidyPercentage: 60,
+    eligibilityCriteria: [
+      'Farmer must have cultivable land with clear title',
+      'Operational irrigation water source (borewell, open well)',
+      'Farmer contribution is only 10% (remaining 30% available as bank loan)'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card',
+      'Khasra/Khatauni Land Record',
+      'Bank Account Passbook',
+      'Water Source Certificate'
+    ],
+    officialPortalUrl: 'https://pmkusum.mnre.gov.in',
+    applicationDeadline: 'State renewable energy portal open application window FY 2026-27',
+    category: 'Soil & Irrigation',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-7',
+    schemeCode: 'KCC-MISS',
+    title: 'Kisan Credit Card (KCC) with Modified Interest Subvention',
+    titleHindi: 'किसान क्रेडिट कार्ड (KCC) एवं 4% रियायती फसली ऋण योजना',
+    ministry: 'Ministry of Agriculture & Farmers Welfare & RBI',
+    shortDescription: 'Short-term institutional crop loans up to ₹3,00,000 at a concessional effective interest rate of 4% per annum (7% base rate with 3% prompt repayment incentive). Collateral-free limit up to ₹1,60,000.',
+    shortDescriptionHindi: 'समय पर ऋण चुकाने पर मात्र 4% की रियायती ब्याज दर पर ₹3,00,000 तक का फसली ऋण। बिना किसी बंधक (कोलैटरल) के ₹1.60 लाख तक की सीमा।',
+    targetBeneficiaries: 'All owner cultivators, tenant farmers, oral lessees, and sharecroppers',
+    financialBenefit: 'Up to ₹3 Lakhs low-interest credit (4% effective annual interest rate)',
+    eligibilityCriteria: [
+      'All farmers cultivating operational landholdings',
+      'Revolving cash credit valid for 5 years with annual review',
+      'Covers crop cultivation costs, post-harvest expenses, and farm asset maintenance'
+    ],
+    requiredDocuments: [
+      'Duly filled KCC Application Form',
+      'Aadhaar Card & PAN Card',
+      'Land title documents (खतौनी/भूलेख प्रति)',
+      'No Dues Certificate (NDC) from local banks'
+    ],
+    officialPortalUrl: 'https://www.myscheme.gov.in/schemes/kcc',
+    applicationDeadline: 'Continuous open enrollment via local bank branches and CSCs',
+    category: 'Direct Income Support',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-8',
+    schemeCode: 'PKVY',
+    title: 'Paramparagat Krishi Vikas Yojana (Organic Cluster Farming)',
+    titleHindi: 'परंपरागत कृषि विकास योजना — जैविक क्लस्टर खेती',
+    ministry: 'Department of Agriculture & Farmers Welfare',
+    shortDescription: 'Financial assistance of ₹50,000 per hectare for 3 years for organic cluster farming, of which ₹31,000 is given directly to farmers for organic inputs (bio-fertilizers, vermicompost, botanical extracts) and PGS-India certification.',
+    shortDescriptionHindi: 'जैविक खेती क्लस्टर अपनाने पर 3 वर्षों में ₹50,000 प्रति हेक्टेयर की वित्तीय सहायता, जिसमें ₹31,000 सीधे जैविक इनपुट्स व प्रमाणीकरण हेतु।',
+    targetBeneficiaries: 'Farmer groups forming minimum 20-hectare clusters',
+    financialBenefit: '₹50,000 per hectare over 3 years (₹31,000 directly for organic inputs)',
+    eligibilityCriteria: [
+      'Farmers forming a contiguous cluster of minimum 20 hectares (50 acres)',
+      'Commitment to chemical-free farming and Participatory Guarantee System (PGS-India) standards',
+      'SC/ST and small/marginal farmers receive cluster priority'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card of group members',
+      'Cluster Farmer Group Resolution',
+      'Individual land records (Khasra/Khatauni)'
+    ],
+    officialPortalUrl: 'https://pgsindia-ncof.gov.in',
+    applicationDeadline: 'Annual district cluster formation tranche FY 2026-27',
+    category: 'Organic Farming',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-9',
+    schemeCode: 'AIF',
+    title: 'Agriculture Infrastructure Fund (AIF)',
+    titleHindi: 'कृषि अवसंरचना कोष (AIF) — पोस्ट-हार्वेस्ट अधोसंरचना',
+    ministry: 'Ministry of Agriculture & Farmers Welfare, Govt of India',
+    shortDescription: 'Medium-long term debt financing facility for investment in viable post-harvest management infrastructure and community farming assets like warehouses, cold chains, modern silos, sorting-grading units, and pack houses with 3% interest subvention up to ₹2 Crores loan.',
+    shortDescriptionHindi: 'वेयरहाउस, कोल्ड स्टोरेज, ग्रेडिंग-सॉर्टिंग यूनिट और कस्टम हायरिंग सेंटर हेतु ₹2 करोड़ तक के ऋण पर 3% वार्षिक ब्याज छूट और क्रेडिट गारंटी।',
+    targetBeneficiaries: 'Farmers, FPOs, PACS, Agri-entrepreneurs, and Startups',
+    financialBenefit: '3% annual interest subvention on loans up to ₹2 Crores for 7 years',
+    eligibilityCriteria: [
+      'Eligible entities establishing viable post-harvest or community agriculture assets',
+      'Credit guarantee coverage under CGTMSE scheme for loans up to ₹2 Crores',
+      'Repayment period of up to 7 years including moratorium'
+    ],
+    requiredDocuments: [
+      'Detailed Project Report (DPR)',
+      'Aadhaar & PAN of promoters',
+      'Land possession or lease deed (minimum 10 years)',
+      'Bank In-principle Sanction Letter'
+    ],
+    officialPortalUrl: 'https://agriinfra.dac.gov.in',
+    applicationDeadline: 'Scheme operational till FY 2032-33',
+    category: 'Farm Machinery',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-10',
+    schemeCode: 'PM-PRANAM',
+    title: 'PM Programme for Restoration, Awareness, Nourishment & Amelioration of Mother Earth',
+    titleHindi: 'पीएम-प्रणाम (रासायनिक उर्वरक संतुलन एवं वैकल्पिक पोषण योजना)',
+    ministry: 'Department of Fertilizers, Ministry of Chemicals & Fertilizers',
+    shortDescription: 'Incentivizes state governments and farmers to adopt balanced chemical fertilizer use, nano-urea, nano-DAP, and bio-fertilizers. Provides subsidies and direct training through Krishi Vigyan Kendras.',
+    shortDescriptionHindi: 'रासायनिक खादों के असंतुलित उपयोग को कम करने और नैनो यूरिया, नैनो डीएपी व जैव उर्वरकों को अपनाने के लिए प्रोत्साहन व सहायता।',
+    targetBeneficiaries: 'All farmers transitioning to balanced soil nutrition',
+    financialBenefit: 'Subsidized Nano Urea (₹225/bottle replaces 45kg bag) + organic composting grants',
+    eligibilityCriteria: [
+      'Open to all farmers purchasing subsidized fertilizers via Aadhaar e-PoS machines',
+      'Priority training via local Krishi Vigyan Kendras (KVKs)'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card',
+      'Soil Health Card (recommended for balanced dosing)'
+    ],
+    officialPortalUrl: 'https://fert.gov.in',
+    applicationDeadline: 'Continuous open implementation across all PACs and fertilizer outlets',
+    category: 'Soil & Irrigation',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-11',
+    schemeCode: 'PM-KMY',
+    title: 'Pradhan Mantri Kisan Maandhan Yojana (Old-Age Farmer Pension)',
+    titleHindi: 'प्रधानमंत्री किसान मानधन योजना (मासिक सामाजिक सुरक्षा पेंशन)',
+    ministry: 'Ministry of Agriculture & Farmers Welfare & LIC',
+    shortDescription: 'Voluntary and contributory old-age pension scheme for small and marginal landholding farmers (18-40 age entry) providing an assured monthly pension of ₹3,000 upon reaching 60 years of age.',
+    shortDescriptionHindi: '18 से 40 वर्ष के छोटे व सीमांत किसानों को 60 वर्ष की आयु पूरी होने पर ₹3,000 प्रति माह की आजीवन सुनिश्चित सामाजिक सुरक्षा पेंशन।',
+    targetBeneficiaries: 'Small and marginal farmers owning up to 2 hectares (5 acres) of cultivable land',
+    financialBenefit: 'Assured ₹3,000 per month lifetime pension (₹36,000 annually) after age 60',
+    eligibilityCriteria: [
+      'Small and Marginal Farmer with cultivable land up to 2 hectares in State land records',
+      'Entry age between 18 and 40 years',
+      'Monthly contribution of ₹55 to ₹200 (matched 100% by Central Government)'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card',
+      'Savings Bank Account Passbook / PM-KISAN bank account',
+      'Landholding Record (खतौनी)'
+    ],
+    officialPortalUrl: 'https://maandhan.in',
+    applicationDeadline: 'Open enrollment at any Common Service Centre (CSC) or online',
+    category: 'Direct Income Support',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-12',
+    schemeCode: 'MIDH',
+    title: 'Mission for Integrated Development of Horticulture (MIDH)',
+    titleHindi: 'एकीकृत बागवानी विकास मिशन (MIDH — पॉलीहाउस व फल-सब्जी अनुदान)',
+    ministry: 'Department of Agriculture & Farmers Welfare, Govt of India',
+    shortDescription: 'Up to 50% capital subsidy for high-tech protected cultivation (naturally ventilated polyhouses, shade net houses), mushroom spawn production, high-density fruit orchards, and nursery establishment.',
+    shortDescriptionHindi: 'पॉलीहाउस, शेडनेट हाउस, मशरूम उत्पादन और उच्च घनत्व वाले बाग लगाने पर 40% से 50% तक का प्रत्यक्ष पूंजीगत अनुदान।',
+    targetBeneficiaries: 'Farmers cultivating horticultural crops, fruits, vegetables, flowers, spices',
+    financialBenefit: 'Capital subsidy up to ₹7.5 Lakhs for polyhouses and protected cultivation',
+    subsidyPercentage: 50,
+    eligibilityCriteria: [
+      'Farmers possessing suitable land for protected cultivation',
+      'Assured water and power connectivity',
+      'Adherence to technical specifications set by National Horticulture Board (NHB)'
+    ],
+    requiredDocuments: [
+      'Land title deeds and demarcation certificate',
+      'Soil and irrigation water testing lab report',
+      'Bank passbook & Aadhaar card',
+      'Technical project cost estimate from approved agency'
+    ],
+    officialPortalUrl: 'https://midh.gov.in',
+    applicationDeadline: 'Annual state horticulture department action plan FY 2026-27',
+    category: 'Organic Farming',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-13',
+    schemeCode: 'NMSA-RAD',
+    title: 'National Mission for Sustainable Agriculture — Rainfed Area Development',
+    titleHindi: 'राष्ट्रीय सतत कृषि मिशन — वर्षा आधारित क्षेत्र विकास (NMSA-RAD)',
+    ministry: 'Department of Agriculture & Farmers Welfare',
+    shortDescription: 'Promotes integrated farming systems combining agriculture with horticulture, dairy, agroforestry, and vermicomposting to climate-proof rainfed farming.',
+    shortDescriptionHindi: 'फसल के साथ बागवानी, डेयरी, वर्मीकम्पोस्ट और कृषि वानिकी को जोड़कर 50% सरकारी अनुदान के साथ टिकाऊ खेती का विकास।',
+    targetBeneficiaries: 'Small and marginal farmers in rainfed agricultural clusters',
+    financialBenefit: 'Up to ₹50,000 per hectare subsidy for integrated farming systems',
+    eligibilityCriteria: [
+      'Rainfed farm plots in notified drought-prone or rainfed districts',
+      'Commitment to integrated multi-tier farming model',
+      'Cluster formation with minimum 50 contiguous hectares'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card',
+      'Land Records (खतौनी)',
+      'Bank Passbook with DBT linkage'
+    ],
+    officialPortalUrl: 'https://nmsa.dac.gov.in',
+    applicationDeadline: 'State cluster action plan tranche FY 2026-27',
+    category: 'Organic Farming',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-14',
+    schemeCode: 'PMMSY',
+    title: 'Pradhan Mantri Matsya Sampada Yojana (Aquaculture in Farm Ponds)',
+    titleHindi: 'प्रधानमंत्री मत्स्य संपदा योजना (खेत तालाब में मछली पालन)',
+    ministry: 'Department of Fisheries, Ministry of Fisheries, Animal Husbandry & Dairying',
+    shortDescription: 'Financial assistance of 40% for general category and 60% for SC/ST and women farmers for constructing farm ponds, biofloc units, and freshwater aquaculture integration.',
+    shortDescriptionHindi: 'खेत तालाब निर्माण, बायोफ्लॉक और मीठे पानी में मत्स्य पालन इकाई लगाने पर 40% से 60% तक का भारी सरकारी अनुदान।',
+    targetBeneficiaries: 'Farmers owning cultivable land suitable for farm pond aquaculture',
+    financialBenefit: 'Up to ₹7.5 Lakhs to ₹12 Lakhs subsidy on farm pond aquaculture units',
+    subsidyPercentage: 60,
+    eligibilityCriteria: [
+      'Applicant farmer must possess title of land suitable for water retention',
+      '60% subsidy for SC/ST/Women beneficiaries; 40% for general category',
+      'Access to supplementary borewell or canal recharge'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card & Caste Certificate (if SC/ST)',
+      'Land title documents and pond layout map',
+      'Water testing report (salinity/pH)',
+      'Cost Estimate from district fisheries officer'
+    ],
+    officialPortalUrl: 'https://pmmsy.dof.gov.in',
+    applicationDeadline: 'Quarterly district approval window closes December 2026',
+    category: 'Soil & Irrigation',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-15',
+    schemeCode: 'RKVY-RAFTAAR',
+    title: 'Rashtriya Krishi Vikas Yojana — Agri-Business Incubation',
+    titleHindi: 'राष्ट्रीय कृषि विकास योजना (रफ्तार — कृषि व्यवसाय इनक्यूबेशन अनुदान)',
+    ministry: 'Ministry of Agriculture & Farmers Welfare, Govt of India',
+    shortDescription: 'Grant-in-aid of up to ₹25 Lakhs for innovative farmer-led startups, FPOs, and value-addition units in agricultural processing, organic grading, and rural tech.',
+    shortDescriptionHindi: 'कृषि प्रसंस्करण, जैविक ग्रेडिंग और ग्रामीण एग्री-स्टार्टअप्स के लिए ₹25 लाख तक का 85% निःशुल्क अनुदान (Grant-in-aid)।',
+    targetBeneficiaries: 'Agri-entrepreneurs, progressive farmers, rural youth, and registered FPOs',
+    financialBenefit: 'Grant-in-aid up to ₹25 Lakhs for innovative agri-business ventures',
+    eligibilityCriteria: [
+      'Innovative concept improving farmer income or reducing post-harvest losses',
+      'Selected through screening by accredited Knowledge Partners (KPs & R-ABIs)'
+    ],
+    requiredDocuments: [
+      'Aadhaar & PAN Card',
+      'Business Pitch Deck / Project Proposal',
+      'Bank Statement of applicant or registered entity'
+    ],
+    officialPortalUrl: 'https://rkvy.nic.in',
+    applicationDeadline: 'National Incubation Cohort 2026-27 call',
+    category: 'Farm Machinery',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-16',
+    schemeCode: 'AHIDF',
+    title: 'Animal Husbandry Infrastructure Development Fund',
+    titleHindi: 'पशुपालन अवसंरचना विकास कोष (AHIDF — डेयरी व चारा प्रसंस्करण)',
+    ministry: 'Department of Animal Husbandry and Dairying',
+    shortDescription: 'Interest subvention of 3% for establishing modern dairy processing units, cattle feed manufacturing plants, and silage baling machinery.',
+    shortDescriptionHindi: 'डेयरी प्रोसेसिंग, पशु आहार निर्माण और साइलेज बेलिंग प्लांट लगाने पर 3% वार्षिक ब्याज छूट और 25% क्रेडिट गारंटी।',
+    targetBeneficiaries: 'Farmer Producer Organizations (FPOs), individual entrepreneurs, MSMEs',
+    financialBenefit: '3% interest subvention with up to 90% loan from scheduled banks',
+    eligibilityCriteria: [
+      'Project in dairy processing, cattle feed plant, or breed improvement',
+      'Minimum 10% promoter contribution'
+    ],
+    requiredDocuments: [
+      'Techno-economic Feasibility Report',
+      'Land ownership/lease agreement',
+      'Aadhaar, PAN & Bank statements'
+    ],
+    officialPortalUrl: 'https://ahidf.udyamimitra.in',
+    applicationDeadline: 'Operational till FY 2026-27 under National Livestock Mission',
+    category: 'Farm Machinery',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-17',
+    schemeCode: 'e-NAM',
+    title: 'National Agriculture Market (e-NAM One Nation One Market)',
+    titleHindi: 'राष्ट्रीय कृषि बाजार (ई-नाम — डिजिटल अंतर-मंडी व्यापार)',
+    ministry: 'Small Farmers Agribusiness Consortium (SFAC), Govt of India',
+    shortDescription: 'Pan-India electronic trading portal networking 1,400+ APMC mandis to create a unified national market with online bidding, assaying lab quality certificates, and instant bank settlements.',
+    shortDescriptionHindi: 'देश की 1,400+ एपीएमसी मंडियों से सीधा डिजिटल व्यापार, पारदर्शी ऑनलाइन बोली और खाते में सीधा भुगतान।',
+    targetBeneficiaries: 'All farmers seeking competitive mandi bidding across district and state borders',
+    financialBenefit: 'Free digital assaying quality testing, zero listing fee, and instant online DBT payment',
+    eligibilityCriteria: [
+      'Any farmer bringing produce to an e-NAM integrated APMC market',
+      'Aadhaar and bank account linked for immediate e-payment settlement'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card',
+      'Bank Passbook / Cancelled Cheque',
+      'Farmer Mandi Registration Slip'
+    ],
+    officialPortalUrl: 'https://enam.gov.in',
+    applicationDeadline: 'Active daily auction portal across 1,400+ live APMCs',
+    category: 'Direct Income Support',
+    isDevelopmentPreview: true
+  },
+  {
+    id: 'scheme-18',
+    schemeCode: 'HONEY-MISSION',
+    title: 'National Honey Mission & Sweet Revolution (Beekeeping Subsidy)',
+    titleHindi: 'राष्ट्रीय मधुमक्खी पालन मिशन (मीठी क्रांति — 80% अनुदान)',
+    ministry: 'Khadi and Village Industries Commission (KVIC) & National Bee Board',
+    shortDescription: '80% financial subsidy on distribution of 10 bee boxes with live colonies and honey extraction toolkits to supplement farm income through apiary cross-pollination.',
+    shortDescriptionHindi: '10 मधुमक्खी बॉक्स, कॉलोनी व शहद निष्कर्षण किट पर 80% प्रत्यक्ष सरकारी अनुदान। फसल परागण और अतिरिक्त आमदनी का साधन।',
+    targetBeneficiaries: 'Small farmers, rural youth, and women beekeeping self-help groups',
+    financialBenefit: '80% government subsidy on bee boxes and colonies (saving up to ₹35,000)',
+    subsidyPercentage: 80,
+    eligibilityCriteria: [
+      'Farmers possessing land suitable for mustard, sunflower, litchi, or seasonal flora',
+      'Completion of 5-day beekeeping training at local KVK or KVIC training center'
+    ],
+    requiredDocuments: [
+      'Aadhaar Card',
+      'Training Completion Certificate',
+      'Bank Passbook copy'
+    ],
+    officialPortalUrl: 'https://nbb.gov.in',
+    applicationDeadline: 'Annual seasonal intake window closes November 2026',
+    category: 'Organic Farming',
+    isDevelopmentPreview: true
   }
 ];
 
@@ -485,14 +813,14 @@ export const sampleVideos: VideoLesson[] = [
     title: 'Wheat First Irrigation & Tillering Secrets: Scientific Timing & Fertilizer Dosage',
     titleHindi: 'गेहूं में पहला पानी (CRI स्टेज) और कल्ले बढ़ाने का सही वैज्ञानिक तरीका',
     category: 'Wheat Cultivation',
-    channelName: 'Krishi Vigyan Kendra Sehore',
-    instructorName: 'Dr. Rameshwar Dayal',
-    instructorTitle: 'Senior Agronomist, ICAR-IARI',
+    channelName: 'Agriculture by Dr Bipin Kumar (ARS)',
+    instructorName: 'Dr. Bipin Kumar',
+    instructorTitle: 'ARS Scientist, Agronomy',
     duration: '14:20',
     viewsCount: '1.4M views',
     publishedDate: '10 Nov 2025',
-    thumbnailUrl: '/src/assets/images/farmer_tech.jpg',
-    videoEmbedId: 'dQw4w9WgXcQ', // Placeholder embed ID
+    thumbnailUrl: 'https://i.ytimg.com/vi/-Pc1IIa6gUQ/hqdefault.jpg',
+    videoEmbedId: '-Pc1IIa6gUQ',
     description: 'Detailed lecture on Crown Root Initiation (CRI Stage) occurring 21 days after sowing. Understand why excess water damages tillering and how to calibrate urea with zinc sulphate.',
     keyTakeaways: [
       'Irrigate strictly at 20-25 days when crown roots emerge',
@@ -508,14 +836,14 @@ export const sampleVideos: VideoLesson[] = [
     title: 'Precision Drip Fertigation Masterclass for Greenhouse & Open Field Vegetables',
     titleHindi: 'टमाटर और मिर्च में ड्रिप सिंचाई और 19:19:19 फर्टिगेशन शेड्यूल',
     category: 'Drip Irrigation',
-    channelName: 'Indian Horticulture Research Foundation',
+    channelName: 'Discover Agriculture',
     instructorName: 'Er. Sumanth Joshi',
     instructorTitle: 'Micro-Irrigation Specialist',
     duration: '18:45',
     viewsCount: '620K views',
     publishedDate: '28 Sep 2025',
-    thumbnailUrl: '/src/assets/images/irrigation_tech.jpg',
-    videoEmbedId: 'dQw4w9WgXcQ',
+    thumbnailUrl: 'https://i.ytimg.com/vi/2O-uZH3Ye9o/hqdefault.jpg',
+    videoEmbedId: '2O-uZH3Ye9o',
     description: 'Learn how venturi injectors work, how to calculate emitter discharge, and water-soluble fertilizer scheduling for high-value solanaceous vegetables.',
     keyTakeaways: [
       'Maintain system operating pressure at 1.0 to 1.2 kg/cm²',
@@ -531,14 +859,14 @@ export const sampleVideos: VideoLesson[] = [
     title: 'Natural Bio-Formulations: Complete Guide to Preparing Jeevamrit & Ghanjeevamrit',
     titleHindi: 'जीवामृत और घनजीवामृत बनाने की पूरी वैज्ञानिक विधि - प्राकृतिक खेती',
     category: 'Natural & Organic Farming',
-    channelName: 'National Centre of Organic Farming',
+    channelName: 'Indian Organic Journey',
     instructorName: 'Acharya Subhash Sharma',
     instructorTitle: 'Master Trainer, PKVY Mission',
     duration: '22:10',
     viewsCount: '2.1M views',
     publishedDate: '15 Aug 2025',
-    thumbnailUrl: '/src/assets/images/crop_leaf.jpg',
-    videoEmbedId: 'dQw4w9WgXcQ',
+    thumbnailUrl: 'https://i.ytimg.com/vi/_PnqWo-Z1GQ/hqdefault.jpg',
+    videoEmbedId: '_PnqWo-Z1GQ',
     description: 'Step-by-step preparation of liquid Jeevamrit using indigenous cow dung, urine, jaggery, gram flour, and virgin forest soil. Microorganism multiplication explained.',
     keyTakeaways: [
       'Ferment in shade for 48-72 hours, stirring clockwise twice daily',
@@ -554,14 +882,14 @@ export const sampleVideos: VideoLesson[] = [
     title: 'Mustard Aphid (चेपा / माहू) Biological & Chemical Defense Protocol',
     titleHindi: 'सरसों में माहू (चेपा) कीट का समय पर सटीक नियंत्रण - वैज्ञानिकों की सलाह',
     category: 'Pest Management',
-    channelName: 'Directorate of Rapeseed-Mustard Research (DRMR)',
+    channelName: 'Kisan Bandhu',
     instructorName: 'Dr. Anita Choudhary',
     instructorTitle: 'Principal Scientist (Entomology)',
     duration: '11:15',
     viewsCount: '480K views',
     publishedDate: '05 Jan 2026',
-    thumbnailUrl: '/src/assets/images/farmer_tech.jpg',
-    videoEmbedId: 'dQw4w9WgXcQ',
+    thumbnailUrl: 'https://i.ytimg.com/vi/S-VuyDXHS4k/hqdefault.jpg',
+    videoEmbedId: 'S-VuyDXHS4k',
     description: 'Recognize the economic threshold level (ETL) of mustard aphids. Deploy yellow sticky traps and apply eco-friendly sprays before pod damage occurs.',
     keyTakeaways: [
       'Install 10 yellow sticky traps per acre at crop canopy height',
@@ -577,14 +905,14 @@ export const sampleVideos: VideoLesson[] = [
     title: 'Soil Health Card Analysis: How to Read Lab Values & Save 30% on Chemical Fertilizers',
     titleHindi: 'सॉइल हेल्थ कार्ड की रिपोर्ट कैसे पढ़ें और डीएपी-यूरिया का फिजूल खर्च रोकें',
     category: 'Soil Health & Fertilizer',
-    channelName: 'Krishi Darshan National',
+    channelName: 'DD Kisan Official',
     instructorName: 'Dr. Vivek Mishra',
     instructorTitle: 'Soil Chemist, ICAR',
     duration: '16:05',
     viewsCount: '890K views',
     publishedDate: '14 Oct 2025',
-    thumbnailUrl: '/src/assets/images/hero_field.jpg',
-    videoEmbedId: 'dQw4w9WgXcQ',
+    thumbnailUrl: 'https://i.ytimg.com/vi/mNMzgIK7mfM/hqdefault.jpg',
+    videoEmbedId: 'mNMzgIK7mfM',
     description: 'Demystifying Electrical Conductivity (EC), Organic Carbon (OC), and available Phosphorus on your official card to prevent soil degradation.',
     keyTakeaways: [
       'If Organic Carbon is < 0.5%, prioritize farm yard manure before sowing',
@@ -600,14 +928,14 @@ export const sampleVideos: VideoLesson[] = [
     title: 'Kisan Drone Technology & Direct Government Subsidy Application Walkthrough',
     titleHindi: 'किसान ड्रोन सब्सिडी योजना 2026: 50% से 100% तक अनुदान की पूरी प्रक्रिया',
     category: 'Farm Machinery',
-    channelName: 'AgriTech India Mission',
+    channelName: 'VLE Society Agri',
     instructorName: 'Sanjay Verma',
     instructorTitle: 'Agri-Mechanization Consultant',
     duration: '19:30',
     viewsCount: '740K views',
     publishedDate: '02 Feb 2026',
-    thumbnailUrl: '/src/assets/images/irrigation_tech.jpg',
-    videoEmbedId: 'dQw4w9WgXcQ',
+    thumbnailUrl: 'https://i.ytimg.com/vi/PwfC_flb7BI/hqdefault.jpg',
+    videoEmbedId: 'PwfC_flb7BI',
     description: 'Learn how FPOs, Custom Hiring Centres, and individual agriculture graduates can obtain up to ₹10 Lakhs subsidy for spraying drones with DGCA approval.',
     keyTakeaways: [
       'Drone pilot certification mandatory under DGCA guidelines',

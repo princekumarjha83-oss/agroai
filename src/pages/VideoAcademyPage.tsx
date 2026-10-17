@@ -9,9 +9,9 @@ import {
   Eye, 
   CheckCircle2, 
   Share2, 
-  BookOpen, 
   X,
-  AlertCircle
+  AlertCircle,
+  ExternalLink
 } from 'lucide-react';
 import { Language, VideoLesson, VideoCategory } from '../types';
 import { apiService } from '../services/apiServices';
@@ -292,20 +292,35 @@ export const VideoAcademyPage: React.FC<VideoAcademyPageProps> = ({ currentLang 
               </button>
             </div>
 
+            {/* Direct Watch Notice Banner */}
+            <div style={{ background: 'var(--cream-surface-muted)', padding: '8px 24px', borderBottom: '1px solid var(--cream-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted-text)', flexWrap: 'wrap', gap: '8px' }}>
+              <span>{currentLang === 'hi' ? 'आधिकारिक कृषि वीडियो स्ट्रीम' : 'Official Agricultural Video Stream'}</span>
+              <a
+                href={`https://www.youtube.com/watch?v={(activeVideo.videoEmbedId || '').replace(/^yt-/, '').trim()}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--agri-green)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}
+              >
+                <span>{currentLang === 'hi' ? 'सीधा यूट्यूब पर खोलें' : 'Open Directly on YouTube'}</span>
+                <ExternalLink style={{ width: '13px', height: '13px' }} />
+              </a>
+            </div>
+
             {/* Video Iframe Embed Player */}
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, background: '#000' }}>
               <iframe
-                src={`https://www.youtube.com/embed/${activeVideo.videoEmbedId}?autoplay=1`}
+                src={`https://www.youtube-nocookie.com/embed/${(activeVideo.videoEmbedId || '').replace(/^yt-/, '').trim()}?autoplay=1&enablejsapi=1&rel=0`}
                 title={activeVideo.title}
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
 
             {/* Modal Content */}
             <div style={{ padding: '24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
                   <div style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--forest-green)' }}>
                     {activeVideo.instructorName} ({activeVideo.instructorTitle})
@@ -315,14 +330,27 @@ export const VideoAcademyPage: React.FC<VideoAcademyPageProps> = ({ currentLang 
                   </div>
                 </div>
 
-                <button
-                  onClick={(e) => handleToggleBookmark(activeVideo.id, e)}
-                  className="btn-secondary"
-                  style={{ padding: '6px 14px', fontSize: '0.82rem' }}
-                >
-                  <Bookmark style={{ width: '14px', height: '14px', fill: activeVideo.isBookmarked ? 'currentColor' : 'none' }} />
-                  <span>{activeVideo.isBookmarked ? 'Bookmarked' : 'Save Video'}</span>
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${(activeVideo.videoEmbedId || '').replace(/^yt-/, '').trim()}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                    style={{ padding: '6px 14px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '6px' }}
+                  >
+                    <ExternalLink style={{ width: '14px', height: '14px', color: 'var(--agri-green)' }} />
+                    <span>{currentLang === 'hi' ? 'यूट्यूब पर देखें' : 'Watch on YouTube'}</span>
+                  </a>
+
+                  <button
+                    onClick={(e) => handleToggleBookmark(activeVideo.id, e)}
+                    className="btn-secondary"
+                    style={{ padding: '6px 14px', fontSize: '0.82rem' }}
+                  >
+                    <Bookmark style={{ width: '14px', height: '14px', fill: activeVideo.isBookmarked ? 'currentColor' : 'none' }} />
+                    <span>{activeVideo.isBookmarked ? 'Bookmarked' : 'Save Video'}</span>
+                  </button>
+                </div>
               </div>
 
               {/* Key Takeaways Box */}

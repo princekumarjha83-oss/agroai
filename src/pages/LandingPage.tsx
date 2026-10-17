@@ -1210,10 +1210,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ currentLang }) => {
             </div>
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, background: '#000' }}>
               <iframe
-                src={`https://www.youtube.com/embed/${sampleVideos.find((v) => v.id === activeVideoModal)?.videoEmbedId || 'dQw4w9WgXcQ'}?autoplay=1`}
+                src={`https://www.youtube-nocookie.com/embed/${(sampleVideos.find((v) => v.id === activeVideoModal)?.videoEmbedId || '-Pc1IIa6gUQ').replace(/^yt-/, '')}?autoplay=1&enablejsapi=1&rel=0`}
                 title="Agriculture Video Tutorial"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>

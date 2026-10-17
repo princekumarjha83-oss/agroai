@@ -11,7 +11,12 @@ import {
   ShieldAlert, 
   Clock, 
   Compass,
-  ArrowUpRight
+  ArrowUpRight,
+  MapPin,
+  LocateFixed,
+  Search,
+  Loader2,
+  RefreshCw
 } from 'lucide-react';
 import { Language, WeatherData } from '../types';
 import { apiService } from '../services/apiServices';
@@ -23,9 +28,88 @@ interface WeatherForecastPageProps {
 export const WeatherForecastPage: React.FC<WeatherForecastPageProps> = ({ currentLang }) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [selectedDay, setSelectedDay] = useState(0);
+  const [isLocating, setIsLocating] = useState(false);
+  const [isLiveGPS, setIsLiveGPS] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [locationStatus, setLocationStatus] = useState<string | null>(null);
+
+  // Fetch weather using live phone GPS coordinates
+  const fetchLivePhoneLocation = () => {
+    if (!navigator.geolocation) {
+      setLocationStatus('Geolocation is not supported by your browser/device.');
+      return;
+    }
+
+    setIsLocating(true);
+    setLocationStatus(currentLang === 'hi' ? 'फोन जीपीएस लोकेशन प्राप्त की जा रही है...' : 'Acquiring live phone GPS coordinates...');
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const { latitude, longitude } = pos.coords;
+          localStorage.setItem('agrivision_lat', latitude.toString());
+          localStorage.setItem('agrivision_lon', longitude.toString());
+          
+          const data = await apiService.getWeatherData('Live GPS Location', latitude, longitude);
+          setWeather(data);
+          setIsLiveGPS(true);
+          setLocationStatus(null);
+        } catch (err) {
+          setLocationStatus(currentLang === 'hi' ? 'लाइव मौसम डेटा प्राप्त नहीं हो सका' : 'Failed to retrieve live weather data.');
+        } finally {
+          setIsLocating(false);
+        }
+      },
+      (err) => {
+        setIsLocating(false);
+        if (err.code === 1) {
+          setLocationStatus(currentLang === 'hi' ? 'कृपया ब्राउज़र सेटिंग्स में जीपीएस लोकेशन की अनुमति दें' : 'Location permission denied. Please allow GPS access in your browser settings.');
+        } else {
+          setLocationStatus(currentLang === 'hi' ? 'जीपीएस सिग्नल प्राप्त नहीं हुआ' : 'GPS signal unavailable. You can enter your district below.');
+        }
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+    );
+  };
+
+  // Search by district or town name
+  const handleSearchSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+
+    setIsLocating(true);
+    setLocationStatus(null);
+    try {
+      const data = await apiService.getWeatherData(searchQuery.trim());
+      setWeather(data);
+      setIsLiveGPS(false);
+    } catch (err) {
+      setLocationStatus(currentLang === 'hi' ? 'स्थान नहीं मिला' : 'Location not found.');
+    } finally {
+      setIsLocating(false);
+    }
+  };
 
   useEffect(() => {
-    apiService.getWeatherData().then(setWeather);
+    // Try restoring saved GPS location or fetch initial
+    const savedLat = localStorage.getItem('agrivision_lat');
+    const savedLon = localStorage.getItem('agrivision_lon');
+    if (savedLat && savedLon) {
+      apiService.getWeatherData('Live GPS Location', parseFloat(savedLat), parseFloat(savedLon))
+        .then((data) => {
+          setWeather(data);
+          setIsLiveGPS(true);
+        })
+        .catch(() => {
+          apiService.getWeatherData().then(setWeather);
+        });
+    } else {
+      apiService.getWeatherData().then(setWeather);
+      // Automatically prompt for device GPS if supported
+      if (navigator.geolocation) {
+        fetchLivePhoneLocation();
+      }
+    }
   }, []);
 
   if (!weather) return null;
@@ -33,22 +117,93 @@ export const WeatherForecastPage: React.FC<WeatherForecastPageProps> = ({ curren
   return (
     <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
       
-      {/* Header */}
+      {/* Header with Live Location Controls */}
       <div style={{ marginBottom: '28px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-          <span className="badge badge-sun">
-            <CloudSun style={{ width: '13px', height: '13px' }} />
-            Agromet Telemetry
-          </span>
-          <span className="badge badge-preview">
-            Development Preview Data
-          </span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span className="badge badge-sun">
+              <CloudSun style={{ width: '13px', height: '13px' }} />
+              Agromet Telemetry
+            </span>
+            {isLiveGPS ? (
+              <span className="badge" style={{ background: '#E8F5E9', color: '#1B5E20', border: '1px solid #A5D6A7', display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2E7D32', display: 'inline-block', boxShadow: '0 0 8px #4CAF50' }} />
+                <MapPin style={{ width: '12px', height: '12px' }} />
+                {currentLang === 'hi' ? 'लाइव फोन लोकेशन सक्रिय' : 'Live Phone GPS Active'}
+              </span>
+            ) : (
+              <span className="badge badge-preview">
+                {currentLang === 'hi' ? 'क्षेत्रीय स्टेशन' : 'Regional Station'}
+              </span>
+            )}
+          </div>
+
+          {/* Action Bar: Use Phone GPS & Manual Search */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={fetchLivePhoneLocation}
+              disabled={isLocating}
+              className="btn-primary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                fontSize: '0.84rem',
+                borderRadius: 'var(--radius-full)',
+                boxShadow: 'var(--shadow-sm)'
+              }}
+            >
+              {isLocating ? (
+                <Loader2 style={{ width: '15px', height: '15px', animation: 'spin 1s linear infinite' }} />
+              ) : (
+                <LocateFixed style={{ width: '15px', height: '15px' }} />
+              )}
+              <span>{currentLang === 'hi' ? '📍 मेरी फोन लोकेशन उपयोग करें' : '📍 Use My Phone Location'}</span>
+            </button>
+
+            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ position: 'relative' }}>
+                <Search style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', width: '14px', height: '14px', color: 'var(--muted-text)' }} />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={currentLang === 'hi' ? 'जिला / कस्बा दर्ज करें...' : 'Enter village or district...'}
+                  style={{
+                    padding: '8px 12px 8px 32px',
+                    fontSize: '0.82rem',
+                    borderRadius: 'var(--radius-full)',
+                    border: '1px solid var(--cream-border)',
+                    outline: 'none',
+                    width: '180px',
+                    background: '#fff'
+                  }}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn-secondary"
+                style={{ padding: '8px 12px', fontSize: '0.82rem', borderRadius: 'var(--radius-full)' }}
+              >
+                {currentLang === 'hi' ? 'खोजें' : 'Search'}
+              </button>
+            </form>
+          </div>
         </div>
+
+        {locationStatus && (
+          <div style={{ background: '#FFF8E1', border: '1px solid #FFE082', color: '#B78103', padding: '6px 14px', borderRadius: 'var(--radius-md)', fontSize: '0.82rem', marginBottom: '8px' }}>
+            {locationStatus}
+          </div>
+        )}
+
         <h1 style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.4rem)', color: 'var(--forest-green)', marginBottom: '6px' }}>
           {currentLang === 'hi' ? 'हाइपरलोकल मौसम व स्प्रे एडवाइजरी' : 'Hyperlocal Agromet Weather & Spray Advisory'}
         </h1>
         <p style={{ color: 'var(--muted-text)', fontSize: '0.95rem' }}>
-          Station: <strong>{weather.location}</strong> • Updated: {weather.updatedAt}
+          Station: <strong style={{ color: 'var(--forest-green)' }}>📍 {weather.location}</strong> {isLiveGPS ? `(${currentLang === 'hi' ? 'फोन जीपीएस से सत्यापित' : 'Live Phone Sensor'})` : ''} • Updated: {weather.updatedAt}
         </p>
       </div>
 

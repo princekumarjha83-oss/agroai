@@ -36,8 +36,9 @@ function ScrollToTop() {
 
 export function App() {
   const [currentLang, setCurrentLang] = useState<Language>(() => {
-    const saved = localStorage.getItem('agrivision_language');
-    return saved === 'hi' ? 'hi' : 'en';
+    const saved = localStorage.getItem('agrivision_language') as Language | null;
+    const validLangs: Language[] = ['en', 'hi', 'bn', 'kn', 'ta', 'te', 'mr', 'gu', 'pa', 'ml', 'or', 'as', 'ur', 'ne'];
+    return (saved && validLangs.includes(saved)) ? saved : 'en';
   });
 
   const handleLanguageChange = (lang: Language) => {
