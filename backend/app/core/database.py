@@ -3,6 +3,7 @@ import json
 import asyncio
 from typing import Dict, Any, List, Optional
 import motor.motor_asyncio
+import certifi
 from app.core.config import settings
 
 class LocalRepository:
@@ -137,7 +138,8 @@ async def init_database():
         try:
             client = motor.motor_asyncio.AsyncIOMotorClient(
                 settings.MONGODB_URI,
-                serverSelectionTimeoutMS=4000
+                serverSelectionTimeoutMS=5000,
+                tlsCAFile=certifi.where()
             )
             # Test ping
             await client.admin.command('ping')
