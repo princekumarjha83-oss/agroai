@@ -1,0 +1,29 @@
+{
+  "name": "cow",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "lucide-react": "^1.16.0",
+    "react-router-dom": "^7.1.5",
+    "three": "^0.174.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@types/three": "^0.174.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "oxlint": "^1.81.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.11"
+  }
+}
